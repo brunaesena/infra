@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  postgres-user:
+    image: postgres:15
+    container_name: postgres-user
+    environment:
+      POSTGRES_DB: userdb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata-user:/var/lib/postgresql/data
+
+  postgres-task:
+    image: postgres:15
+    container_name: postgres-task
+    environment:
+      POSTGRES_DB: taskdb
+      POSTGRES_USER: task
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata-task:/var/lib/postgresql/data
+
+  user-service:
+    build:
+      context: ../user-service
+    container_name: user-service
+    depends_on:
+      - postgres-user
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-user:5432/userdb
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+    ports:
+      - "8081:8080"
+
+  task-service:
+    build:
+      context: ../task-service
+    container_name: task-service
+    depends_on:
+      - postgres-task
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-task:5432/taskdb
+      SPRING_DATASOURCE_USERNAME: task
+      SPRING_DATASOURCE_PASSWORD: password
+    ports:
+      - "8082:8080"
+
+  frontend:
+    build:
+      context: ../frontend
+    container_name: frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - user-service
+      - task-service
+
+volumes:
+  pgdata-user:
+  pgdata-task:
