@@ -25,7 +25,7 @@ services:
 
   user-service:
     build:
-      context: ../user-service
+      context: ../user-microservice
     container_name: user-service
     depends_on:
       - postgres-user
@@ -38,7 +38,7 @@ services:
 
   task-service:
     build:
-      context: ../task-service
+      context: ../task-microservice
     container_name: task-service
     depends_on:
       - postgres-task
