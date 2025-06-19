@@ -1,11 +1,9 @@
-version: '3.8'
-
 services:
   postgres-test:
     image: postgres:15
     container_name: postgres-test
     ports:
-      - "5433:5432"
+      - "5431:5432"
     environment:
       POSTGRES_DB: user_service_test
       POSTGRES_USER: test_user
