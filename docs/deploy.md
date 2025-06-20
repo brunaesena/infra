@@ -53,7 +53,7 @@ Isso irá subir os seguintes serviços:
 Cada backend (`user-microservice` e `task-microservice`) possui testes que podem ser executados com:
 
 ```bash
-mvn clean install
+mvn clean test
 ```
 
 Execute esse comando dentro da pasta de cada microsserviço para rodar os testes unitários e de integração.
