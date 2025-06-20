@@ -23,6 +23,18 @@ services:
     volumes:
       - pgdata-task:/var/lib/postgresql/data
 
+  postgres-test:
+    image: postgres:15
+    container_name: postgres-test
+    environment:
+      POSTGRES_DB: testdb
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5435:5432"
+    volumes:
+      - pgdata-test:/var/lib/postgresql/data
+
   user-service:
     build:
       context: ../user-microservice
@@ -62,3 +74,4 @@ services:
 volumes:
   pgdata-user:
   pgdata-task:
+  pgdata-test:
