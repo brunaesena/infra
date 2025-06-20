@@ -26,6 +26,8 @@ git clone https://github.com/brunaesena/task-microservice
 docker-compose up --build
 ```
 
+Obs. O comando acima também roda o banco de testes para os testes e2e com Cypress
+
 3. Acesse a aplicação no navegador:
 
 - Frontend: http://localhost:4200
