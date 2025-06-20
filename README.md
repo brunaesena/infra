@@ -41,3 +41,16 @@ Obs. O comando acima também roda o banco de testes para os testes e2e com Cypre
 Consulte o guia completo de deploy em [`docs/deploy.md`](docs/deploy.md) para mais detalhes, incluindo pré-requisitos, testes e estrutura da aplicação.
 
 ---
+
+## ✅ Testes End-to-End com Cypress
+
+O ambiente Docker já está preparado para rodar testes de interface utilizando o **Cypress**.
+
+### 📦 Comandos disponíveis
+
+Execute os seguintes comandos a partir da pasta `frontend-angular-desafio`:
+
+```bash
+npm run cy:run   # Executa os testes no modo headless
+npm run cy:open  # Abre o Cypress em modo visual
+
